@@ -15,7 +15,7 @@ paper size since OSX seems that it doesn't comes with A3 paper size by default
 
 ![Generating PDF with custom paper size](save_pdf.png)
 
-To be able to use [less](/less) in client side, start a server in the repo's dir
+To be able to use [less](less/less) in client side, start a server in the repo's dir
 
         python -m SimpleHTTPServer
 
