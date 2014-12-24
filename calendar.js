@@ -1,8 +1,9 @@
 // Spanish days
 moment.locale('es');
+var startOnModay = true;
 
-var start = moment('2015-01-01');
-var end = moment('2016-01-01');
+var from = moment('2015-01-01');
+var to = moment('2016-01-01');
 
 var months = moment.months();
 var currentMonth = 0;
@@ -10,11 +11,17 @@ var week = 1;
 var $table;
 var holidays = ['01-01', '02-16', '02-17', '03-23', '03-24', '04-02', '04-03', '05-01', '05-25', '06-20', '07-09', '08-17', '10-12', '11-23', '12-07', '12-08', '12-25'];
 
-// start the week on Monday
-var date = moment(start).startOf('week').isoWeekday(1);
-
 // First week of the year (starts in Dec 28 2014 instead Jan 1 2015)
-date.week(1);
+var date = moment(from)
+
+if (startOnModay) {
+  // start the week on Monday
+  date.startOf('week').isoWeekday(1);
+} else {
+  // start the week on Sunday
+  date.startOf('week').weekday(7);
+  date.week(0);
+}
 
 var insertPicture = function(month) {
   $('<img src="photos/4/' + (month + 1) + '.jpg" />').appendTo('body');
@@ -33,9 +40,10 @@ var insertWeekdays = function() {
   var weekdays = moment.weekdays();
 
   // make Monday the first day of the week
-  var sunday = weekdays.shift();
-  weekdays.push(sunday);
-
+  if (startOnModay) {
+    var sunday = weekdays.shift();
+    weekdays.push(sunday);
+  }
   $.each(weekdays, function(index, dayName) {
     weekdaysTemplate += '<th>' + dayName + '</th>';
   });
@@ -50,7 +58,7 @@ insertMonthName(0);
 insertCalendarTable();
 insertWeekdays();
 
-while (date.isBefore(end)) {
+while (date.isBefore(to)) {
   var $tr = $('<tr/>').appendTo($table);
 
   for (var i = 0; i < 7; i++) {
@@ -62,11 +70,12 @@ while (date.isBefore(end)) {
 
     var dayElement = '<td>' + day + '</td>';
     // Checks if the current day is from last month OR last year
-    if (date.month() < currentMonth || date.year() < start.year()) {
+    if (date.month() < currentMonth || date.year() < from.year()) {
       dayElement = '<td class="prev-month">' + day + '</td>';
     }
-    // Checks if the current day if from the next month OR next year
-    if ((date.month() > currentMonth && date.year() >= start.year()) || date.year() >= end.year()) {
+    // Checks if the current day is from the next month and this year
+    // OR the day is from the next year
+    if ((date.month() > currentMonth && date.year() >= from.year()) || date.year() >= to.year()) {
       dayElement = '<td class="next-month">' + day + '</td>';
     }
 
