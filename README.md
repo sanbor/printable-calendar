@@ -3,7 +3,7 @@
 ![Printed calendar](printed.jpg)
 
 This was a very quick project to just "design" a printable calendar with the
-pictures of my girlfriend to give as a gift to friends and family.
+pictures by my girlfriend to give as a gift to friends and family.
 
 The code is not very good, it just does the job. My idea is to release it ASAP
 so others can generate and print their calendars and give them as a gift for
