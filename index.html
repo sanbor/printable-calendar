@@ -2,13 +2,124 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Calendario 2015 Bea y Santi</title>
+    <title>Printable customizable calendar</title>
 
-    <link rel="stylesheet/less" type="text/css" href="calendar.less"/>
+    <link rel="stylesheet/less" type="text/css" media="print" href="calendar.less"/>
+    <link rel="stylesheet/less" type="text/css" media="screen" href="index.less"/>
+    <script>
+      less = {
+        env: "development",
+        async: false,
+        fileAsync: false,
+        poll: 1000,
+        functions: {
+          // getPercent: function(total, percent) {
+          //   return new(total * 100 / percent)(total, percent);
+          // }
+        },
+        dumpLineNumbers: "comments",
+        relativeUrls: false,
+        rootpath: ":/a.com/"
+      };
+    </script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/less.js/2.1.0/less.min.js" type="text/javascript"></script>
   </head>
 
   <body>
+    <div class="calendarGenerator">
+      <h1>Printable customizable calendar</h1>
+      <form>
+        <h2>Period</h2>
+        <label>
+          <span>From</span>
+          <input type="date" class="fromPeriod" />
+        </label>
+        <label>
+          <span>To</span>
+          <input type="date" class="toPeriod" />
+        </label>
+        <h2>Page size</h2>
+        <label>
+          <span>Size</span>
+          <select class="pageSize">
+            <option value="a4">A4 - 210 mm × 297 mm or 8.27 in × 11.7 in</option>
+            <option value="letter">Letter - 216 mm × 279 mm or 8.5 in × 11 in</option>
+            <option value="a3">A3 - 297 mm × 420 mm or 11.7 in × 16.5 in</option>
+            <option value="custom">Custom</option>
+          </select>
+        </label>
+
+        <div class="customPageSize" style="display:none">
+          <label>
+            <span>Width</span>
+            <input type="text" class="pageWidth" />
+            <select class="widthUnit">
+              <option>mm</option>
+              <option>in</option>
+              <option>px</option>
+            </select>
+          </label>
+          <label>
+            <span>Height</span>
+            <input type="text" class="pageHeight" />
+            <select class="heightUnit">
+              <option>mm</option>
+              <option>in</option>
+              <option>px</option>
+            </select>
+          </label>
+          <small>
+            <p>Common page sizes for reference</p>
+              <dl>
+               <dt>A5
+               </dt><dd>Equivalent to the size of ISO A5 media: 148mm wide and 210mm
+                high.
+               </dd><dt>A4
+               </dt><dd>Equivalent to the size of ISO A4 media: 210mm wide and 297mm
+                high.
+               </dd><dt>A3
+               </dt><dd>Equivalent to the size of ISO A3 media: 297mm wide and 420mm
+                high.
+               </dd><dt>B5
+               </dt><dd>Equivalent to the size of ISO B5 media: 176mm wide by 250mm
+                high.
+               </dd><dt>B4
+               </dt><dd>Equivalent to the size of ISO B4 media: 250mm wide by 353mm
+                high.
+               </dd><dt>letter
+               </dt><dd>Equivalent to the size of North American letter media: 8.5
+                inches wide and 11 inches high
+               </dd><dt>legal
+               </dt><dd>Equivalent to the size of North American legal: 8.5 inches wide
+                by 14 inches high.
+               </dd><dt>ledger
+               </dt><dd>Equivalent to the size of North American ledger: 11 inches wide
+                by 17 inches high.
+              </dd>
+            </dl>
+          </small>
+        </div>
+        <h2>Picture in separate page?</h2>
+        <p>Ecology warning: This option will use two pages for each month.</p>
+        <label>
+          <input type="checkbox" class="pictureSeparate" />
+          <span>Put picture in a separate page</span>
+        </label>
+        <p>
+          <strong>√ Don't forget to select the right paper size in the print dialog.</strong>
+        </p>
+        <p>
+          <strong>√ Don't forget to check the option "Print backgrounds" in the print dialog.</strong>
+        </p>
+        <p>
+          <button type="submit" class="printCalendar">
+            Print calendar
+          </button>
+        </p>
+      </form>
+    </div>
+
+    <div class="printableCalendar" />
     <!--  Example markup
       <img src="img/4/1.jpg">
       <h1>enero</h1>

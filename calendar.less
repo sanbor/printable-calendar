@@ -8,52 +8,125 @@
 
 @th-border-top: 5pt;
 
-body {
- font-family: 'Helvetica Neue', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
- font-weight: 200;
- color: rgba(0, 0, 0, 1);
- margin: 0;
- padding: 0;
- line-height: 1.5;
- font-size: 28pt;
- text-align: center;
+@a4-width:210mm;
+@a4-height:297mm;
+@letter-width: 216mm;
+@letter-height: 279mm;
+@a3-width:297mm;
+@a3-height:420mm;
+
+@pageWidth: @a3-width;
+@pageHeight: @a3-height;
+
+@page {
+  margin: auto;
 }
 
-img {
-page-break-before: always;
-width: 3024pt/4;
-height: 1998pt/4;
+
+.a4 {
+  @page {
+    size: A4 portrait;
+  }
+  &.separatePicture {
+    @page {
+      size: letter landscape;
+    }
+  }
 }
 
-h1 {
+.a3 {
+  @page {
+    size: A3 portrait;
+  }
+  &.separatePicture {
+    @page {
+      size: letter landscape;
+    }
+  }
+}
+
+.letter {
+  @page {
+    size: letter portrait;
+  }
+  &.separatePicture {
+    @page {
+      size: letter landscape;
+    }
+  }
+}
+
+.calendarGenerator {
+  display: none;
+}
+
+.printableCalendar {
+  font-family: 'Helvetica Neue', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
+  font-weight: 200;
+  color: black;
+  line-height: 1;
   text-align: center;
-  font-weight: 100;
-  margin: 50pt auto;
+
+  // 1 mm = 2.834645669 pt
+  // a4 has a width of 210, divided 200 is equal to a factor of 1.05
+  font-size: unit(@pageWidth / 200) * 16pt;
+
+  img {
+    width: auto;
+    max-width: @pageWidth;
+    height: @pageHeight/2;
+   .separatePicture & {
+    vertical-align: middle;
+      max-height: @pageHeight;
+      height: auto;
+    }
+  }
+
+
+.Calendar {
+  .separatePicture & {
+    page-break-before: always;
+  }
+  page-break-after: always;
+  margin: auto;
+  width: @pageWidth;
+  // height: @pageHeight/2;
+  // border: 1px solid red;
+  overflow: hidden;
+
+
+  h1 {
+    text-align: center;
+    font-weight: 100;
+    margin: @pageHeight/20 auto @pageHeight/25;
+    font-size: 150%;
+  }
 }
 
-.calendar {
-  width: 77%;
-  margin: 30pt auto;
+.Calendar-table {
+  // width: 77%;
+  margin: 0 auto;
   border-collapse: collapse;
-}
-
-th {
-  font-size: 16pt;
-  height: 40pt;
-  font-weight: 100;
-  color: white;
 }
 
 td, th {
   position: relative;
   text-align: center;
-  width: 14.28%;
-  padding: 3pt;
+  width: @pageWidth/8;
+  height: round(@pageHeight/100)*4;
+  vertical-align: top;
+  line-height: 1;
+  // border: 1px solid red;
 }
 
-// distance between the first row and thead
-tr:nth-child(1) td {
-  border-top: 30pt white solid;
+
+th {
+  line-height: 1;
+  font-size: 60%;
+  padding-top: @pageHeight/60;
+  height: @pageHeight/20;
+  font-weight: 100;
+  vertical-align: top;
 }
 
 th:nth-child(1) {
@@ -128,9 +201,9 @@ td:nth-child(7) {
   content: '';
   display: block;
   position: absolute;
-  top: 50%;
+  top: 25%;
   left: 25%;
-  height: 1pt;
+  height: 2pt;
   width: 50%;
   background: currentColor;
   z-index: 99;
@@ -146,10 +219,11 @@ td:nth-child(7) {
   background: #d59797;
   left: 50%;
   bottom: 0;
-  top: 50%;
-  margin-left: -20pt;
-  margin-top: -20pt;
+  top: 25%;
+  margin-left: (-1)*(@pageHeight/25)/2;
+  margin-top: (-1)*(@pageHeight/25)/2;
   opacity: 0.3;
-  width: 40pt;
-  height: 40pt;
+  width: @pageHeight/25;
+  height: @pageHeight/25;
+}
 }

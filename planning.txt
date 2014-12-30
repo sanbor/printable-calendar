@@ -1,0 +1,39 @@
+
+-- iteration 1
+[x] crear pagina generador
+- boton imprimir
+
+[x] agregar formulario para customizar fecha
+[x] modificar calendar.html para modificarse dinamicamente
+[x] agregar formulario para customizar tamaño página
+tamaño pagina con clases
+
+
+research como actualizar variables less
+probablemente vaya a tener que poner todo dentro de una container
+modificar estilos dinamicamente
+agregar formulario para customizar fotos
+actualizar fotos
+agregar formulario para customizar feriados
+recalcular feriados
+agregar html para agregar descripciones en la parte baja del calendario
+estilos para esas descripciones
+
+crear generador jekyll
+
+
+-- iteration 2
+preview en tiempo real
+
+mostrar en un costado el calendario y regenerarlo cuando se cambia el formulario
+agregar formulario para customizar el theme
+crear un theme alternativo
+agregar textarea con con el theme less y permitir customizarlo en tiempo real
+agregar feature de agregar cumpleaños y fotos
+
+
+-- iteration 3
+
+cargar imagenes en cache mientras se customiza el calendario
+mostrar screenshot de opciones del navegador que se esta usando
+recomendar usar safari o chrome
