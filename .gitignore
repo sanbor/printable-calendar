@@ -1,0 +1,17 @@
+lib-cov
+*.seed
+*.log
+# *.csv
+*.dat
+*.out
+*.pid
+*.gz
+
+*.sublime-workspace
+*.project
+
+npm-debug.log
+
+.DS_Store
+bower_components
+node_modules

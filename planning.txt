@@ -9,18 +9,22 @@
 tamaño pagina con clases
 
 
-research como actualizar variables less
-probablemente vaya a tener que poner todo dentro de una container
-modificar estilos dinamicamente
-agregar formulario para customizar fotos
-actualizar fotos
-agregar formulario para customizar feriados
-recalcular feriados
-agregar html para agregar descripciones en la parte baja del calendario
-estilos para esas descripciones
+[x] research como actualizar variables less
+[x] probablemente vaya a tener que poner todo dentro de una container
+[x] modificar estilos dinamicamente
+[x] manejar dependencias con bower x
+[ ] pasar el sitio a bootstrap xx
+[ ] refactor xxx
+[ ] Calcular tamaño default
+[ ] solucionar bug inches xx
+[ ] agregar formulario para customizar locale
+[ ] recalcular locale
 
-crear generador jekyll
-
+[ ] agregar formulario para customizar fotos
+[ ] actualizar fotos
+[ ] agregar formulario para customizar feriados
+[ ] recalcular feriados
+[ ] deploy
 
 -- iteration 2
 preview en tiempo real

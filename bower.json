@@ -1,0 +1,25 @@
+{
+  "name": "printable-calendar",
+  "version": "0.0.1",
+  "homepage": "https://github.com/sanbor/printable-calendar",
+  "authors": [
+    "Santiago Borrazas <santiago@borrazas.org>"
+  ],
+  "main": "index.html",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.3",
+    "moment": "~2.8.4",
+    "less.js": "~2.1.2",
+    "normalize.css": "~3.0.2",
+    "fontawesome": "~4.2.0"
+  }
+}

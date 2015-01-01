@@ -1,41 +1,125 @@
+function toInches(number) {
+  return Number(number / 25.4).toPrecision(2);
+}
+
+
 $(function() {
   var date = moment().date(1).month(0);
   var year = moment(date).year();
+  // sizes in mm
   var pageSizes = {
     'a4': {
-      width: '210mm',
-      height: '297mm'
+      width: 210,
+      height: 297,
+      marginTop: 17,
+      marginBottom: 25.4,
+      marginLeft: 17,
+      marginRight: 17
     },
     'a3': {
-      width: '297mm',
-      height: '420mm'
+      width: 297,
+      height: 420,
+      marginTop: 17,
+      marginBottom: 25.4,
+      marginLeft: 17,
+      marginRight: 17
     },
     'letter': {
-      width: '8.5in',
-      height: '11in'
+      width: 215.9,
+      height: 279.4,
+      marginTop: 17,
+      marginBottom: 25.4,
+      marginLeft: 17,
+      marginRight: 17
     }
   };
 
   $('.fromPeriod').val(moment(date).year(++year).format('YYYY-MM-DD'));
   $('.toPeriod').val(moment(date).year(++year).format('YYYY-MM-DD'));
 
+  $('.widthUnit').change(function(event) {
+    $('.units').text($('.widthUnit').val());
+    $('.pageSize').change();
+  });
+
+  $('.widthUnit').change();
+
+  $('.pageSize').change(function(event) {
+    if ($('.pageSize').val() === 'custom') {
+      $('.customPageSize').show();
+    } else {
+      $('.customPageSize').hide();
+      var pageSize = pageSizes[$('.pageSize').val()];
+      var isMm = $('.widthUnit').val() === 'mm';
+      $('.pageMarginTop').val(isMm ? pageSize.marginTop : toInches(pageSize.marginTop));
+      $('.pageMarginBottom').val(isMm ? pageSize.marginBottom : toInches(pageSize.marginBottom));
+      $('.pageMarginLeft').val(isMm ? pageSize.marginLeft : toInches(pageSize.marginLeft));
+      $('.pageMarginRight').val(isMm ? pageSize.marginRight : toInches(pageSize.marginRight));
+    }
+  });
+
   $('.printCalendar').click(function(event) {
     event.preventDefault();
+    var pictureSeparate = $('.pictureSeparate').prop('checked');
+    var pageWidth;
+    var pageHeight;
+    var unit = $('.widthUnit').val();
+    var pageMarginTop = $('.pageMarginTop').val();
+    var pageMarginBottom = $('.pageMarginBottom').val();
+    var pageMarginLeft = $('.pageMarginLeft').val();
+    var pageMarginRight = $('.pageMarginRight').val();
+
     if ($('.pageSize').val() === 'custom') {
+      // when the picture is separate, we want to print in landscape
+      // so the width it's the height and the height the width
+      if (pictureSeparate) {
+        pageWidth = $('.pageWidth').val() - pageMarginLeft - pageMarginRight;
+        pageHeight = ($('.pageHeight').val() * 2) - pageMarginTop - pageMarginBottom;
+      } else {
+        pageWidth = $('.pageHeight').val() - pageMarginLeft - pageMarginRight;
+        pageHeight = $('.pageWidth').val() - pageMarginTop - pageMarginBottom;
+      }
+
       less.modifyVars({
-        '@pageWidth': $('.pageWidth').val() + $('.widthUnit').val(),
-        '@pageHeight': $('.pageHeight').val() + $('.heightUnit').val()
+        '@pageSizeUnit': unit,
+        '@pageWidth': pageWidth + unit,
+        '@pageHeight': pageHeight + unit,
+        '@pageSize': '@pageWidt @pageHeight',
+        '@pageOrientation': pictureSeparate ? 'landscape' : 'portrait',
       });
     } else {
       var selectedSize = $('.pageSize').val();
       var pageSize = pageSizes[selectedSize];
-      $('body').addClass(selectedSize);
+
+      // when the picture is separate, we want to print in landscape
+      // so the width it's the height and the height the width
+      if (pictureSeparate) {
+        // convert mm to in if necessary
+        pageWidth = unit === 'mm' ? pageSize.height : toInches(pageSize.height);
+        pageHeight = unit === 'mm' ? pageSize.width : toInches(pageSize.width);
+        pageHeight *= 2;
+        pageHeight = pageHeight - pageMarginTop - pageMarginBottom;
+      } else {
+        // convert mm to in if necessary
+        pageWidth = unit === 'mm' ? pageSize.width : pageSize.width / 25.4;
+        pageHeight = unit === 'mm' ? pageSize.height : pageSize.height / 25.4;
+      }
+      pageWidth = pageWidth - pageMarginLeft - pageMarginRight;
+      pageHeight = pageHeight - pageMarginTop - pageMarginBottom - 1;
+
       less.modifyVars({
-        '@pageWidth': pageSize.width,
-        '@pageHeight': pageSize.height
+        '@pageSizeUnit': unit,
+        '@pageWidth': pageWidth + unit,
+        '@pageHeight': pageHeight + unit,
+        '@pageSize': selectedSize,
+        '@pageOrientation': pictureSeparate ? 'landscape' : 'portrait',
       });
     }
-    $('body').toggleClass('separatePicture', $('.pictureSeparate').prop('checked'));
+
+    $('body').toggleClass('pictureSeparate', pictureSeparate);
+    $('body').toggleClass('pageBorder', $('.showPageBorder').prop('checked'));
+    $('body').toggleClass('noPictures', $('.noPictures').prop('checked'));
+
     var from = $('.fromPeriod').val();
     var to = $('.toPeriod').val();
     generateCalendar(from, to);
@@ -72,12 +156,19 @@ function generateCalendar(from, to) {
     date.day(0);
   }
 
-  var insertPicture = function(month) {
-    $('<img src="photos/4/' + (month + 1) + '.jpg" />').appendTo('.printableCalendar');
+  var createPageForMonthNumber = function(month) {
+    var $container = $('<div class="page"></div>').appendTo('.printableCalendar');
+
+    insertPicture(month, $container);
+    insertCalendar(month, $container);
+  }
+
+  var insertPicture = function(month, $container) {
+    $('<div class="imgContainer"><img src="photos/1/' + (month + 1) + '.jpg" /></div>').appendTo($container);
   };
 
-  var insertCalendar = function(month) {
-    var $Calendar = $('<div class="Calendar"></div>').appendTo('.printableCalendar');
+  var insertCalendar = function(month, $container) {
+    var $Calendar = $('<div class="Calendar"></div>').appendTo($container);
 
     $('<h1>' + months[month] + '</h1>').appendTo($Calendar);
     $table = $('<table class="Calendar-table"></table>').appendTo($Calendar);
@@ -102,8 +193,8 @@ function generateCalendar(from, to) {
     $(weekdaysTemplate).appendTo($table);
   };
 
-  insertPicture(0);
-  insertCalendar(0);
+  // January
+  createPageForMonthNumber(0);
 
   while (date.isBefore(to)) {
     var $tr = $('<tr/>').appendTo($table);
@@ -134,12 +225,12 @@ function generateCalendar(from, to) {
     if (date.month() > currentMonth ||
       date.month() < currentMonth && date.year() < to.year()) {
       currentMonth++;
+
       if (currentMonth > 11) {
         currentMonth = 0;
       }
 
-      insertPicture(currentMonth);
-      insertCalendar(currentMonth);
+      createPageForMonthNumber(currentMonth);
 
       // if Monday is not 1st, we are going to show the last days of the
       // last month

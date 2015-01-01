@@ -4,6 +4,18 @@
 		"selected_items":
 		[
 			[
+				"separate",
+				"separatePicture"
+			],
+			[
+				"inl",
+				"inline-block"
+			],
+			[
+				"current",
+				"currentMonth"
+			],
+			[
 				"weekda",
 				"weekdays"
 			],
@@ -28,10 +40,6 @@
 				"variantId"
 			],
 			[
-				"current",
-				"currentTo"
-			],
-			[
 				"tex",
 				"text-align"
 			]
@@ -40,14 +48,52 @@
 	"buffers":
 	[
 		{
-			"contents": "\n-- iteration 1\ncrear pagina generador\n- boton imprimir\n\nagregar formulario para customizar fecha\nmodificar calendar.html para modificarse dinamicamente\nagregar formulario para customizar tamaño página\nresearch como actualizar variables less\nprobablemente vaya a tener que poner todo dentro de una container\nmodificar estilos dinamicamente\nagregar formulario para customizar fotos\nactualizar fotos\nagregar formulario para customizar feriados\nrecalcular feriados\nagregar html para agregar descripciones en la parte baja del calendario\nestilos para esas descripciones\n\ncrear generador jekyll\n\n\n-- iteration 2\npreview en tiempo real\n\nmostrar en un costado el calendario y regenerarlo cuando se cambia el formulario\nagregar formulario para customizar el theme\ncrear un theme alternativo\nagregar textarea con con el theme less y permitir customizarlo en tiempo real\nagregar feature de agregar cumpleaños y fotos\n",
 			"file": "planning.txt",
-			"file_size": 885,
-			"file_write_time": 130643411450000000,
 			"settings":
 			{
-				"buffer_size": 907,
+				"buffer_size": 1033,
 				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "calendar.js",
+			"settings":
+			{
+				"buffer_size": 7735,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "index.html",
+			"settings":
+			{
+				"buffer_size": 9154,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "README.md",
+			"settings":
+			{
+				"buffer_size": 1146,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "calendar.less",
+			"settings":
+			{
+				"buffer_size": 3493,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "index.less",
+			"settings":
+			{
+				"buffer_size": 49,
+				"line_ending": "Unix",
+				"name": "body{"
 			}
 		},
 		{
@@ -101,9 +147,40 @@
 	},
 	"console":
 	{
-		"height": 0.0,
+		"height": 216.0,
 		"history":
 		[
+			"279-64",
+			"216-52",
+			"420/100*5",
+			"420/100*10",
+			"420/100*20",
+			"420/20",
+			"297/200",
+			"210/200",
+			"210/250",
+			"297/250",
+			"297/300",
+			"297/200",
+			"300/2",
+			"200/2",
+			"100/2",
+			"400/100*50",
+			"300/100*50",
+			"200/100*50",
+			"100/100*50",
+			"00/100*50",
+			"100/100*5",
+			"410/100*10",
+			"410/200",
+			"310/200",
+			"210/200",
+			"210/20",
+			"210/297",
+			"14*7",
+			"100/7",
+			"109/7",
+			"10/7"
 		]
 	},
 	"distraction_free":
@@ -298,6 +375,34 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"unit",
+			"margin",
+			"pictureSeparate",
+			"mm",
+			"marginV",
+			"marginH",
+			"unit",
+			"pageSize",
+			".page",
+			"separatePicture",
+			"pictureSeparate",
+			"red",
+			"round",
+			"landsca",
+			"height",
+			"@page",
+			"height",
+			"break",
+			"1pt",
+			"pt",
+			"padding",
+			"pt",
+			"tabl",
+			"a4",
+			"line",
+			"insertWeekdays",
+			"();",
+			"body",
 			"end",
 			"start",
 			"b)",
@@ -397,35 +502,7 @@
 			"fulfillment_status_filter_typ",
 			"FullfilmentStatusFilterType",
 			"order",
-			"trim",
-			"order",
-			"n",
-			"V e",
-			" ́",
-			"modal",
-			"alert alert-notification",
-			"close",
-			"event",
-			"modal",
-			"modalasync",
-			"modal_async",
-			"modal_component",
-			"Modal-footer text-right",
-			"modal-",
-			"events: {",
-			"ModalAsyncView",
-			"debugg",
-			".bind(",
-			".on(",
-			"on(",
-			"on",
-			"click",
-			"bind",
-			"clos",
-			"close",
-			"hideSpi",
-			"close",
-			"cancel"
+			"trim"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -433,6 +510,7 @@
 		"regex": false,
 		"replace_history":
 		[
+			"pictureSeparate",
 			"assertParamInUrl",
 			"Computed property \"label\" must be implemented",
 			"FulfillmentStatusFilterType",
@@ -495,15 +573,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 907,
+						"buffer_size": 1033,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								517,
+								517
 							]
 						],
 						"settings":
@@ -520,6 +598,148 @@
 				},
 				{
 					"buffer": 1,
+					"file": "calendar.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 7735,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								672,
+								645
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 485.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "index.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 9154,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								5479,
+								5479
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 3794.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "README.md",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 1146,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Markdown/Markdown.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "calendar.less",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3493,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								778,
+								778
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/LESS/LESS.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 2134.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "index.less",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 49,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"auto_name": "body{",
+							"syntax": "Packages/LESS/LESS.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
 					"semi_transient": false,
 					"settings":
 					{
@@ -542,7 +762,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 5,
 					"type": "text"
 				}
 			]

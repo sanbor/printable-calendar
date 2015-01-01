@@ -2,9 +2,9 @@
 @tue-color: #6A4A3C;
 @wed-color: #490A3D;
 @thu-color: #BD1550;
-@fri-color: #E97F02;
-@sat-color: #F8CA00;
-@sun-color: #8A9B0F;
+@fri-color: darken(#E97F02, 5%);
+@sat-color: darken(#F8CA00, 10%);
+@sun-color: darken(#8A9B0F, 10%);
 
 @th-border-top: 5pt;
 
@@ -15,45 +15,20 @@
 @a3-width:297mm;
 @a3-height:420mm;
 
-@pageWidth: @a3-width;
-@pageHeight: @a3-height;
+@pageWidth: 180mm;
+@pageHeight: 180mm;
+@pageSize: a4;
+@pageOrientation: landscape;
+@pageSizeUnit: mm;
+
+body {
+  margin: 0;
+  padding: 0;
+}
 
 @page {
-  margin: auto;
-}
-
-
-.a4 {
-  @page {
-    size: A4 portrait;
-  }
-  &.separatePicture {
-    @page {
-      size: letter landscape;
-    }
-  }
-}
-
-.a3 {
-  @page {
-    size: A3 portrait;
-  }
-  &.separatePicture {
-    @page {
-      size: letter landscape;
-    }
-  }
-}
-
-.letter {
-  @page {
-    size: letter portrait;
-  }
-  &.separatePicture {
-    @page {
-      size: letter landscape;
-    }
-  }
+  margin: 0 auto;
+  size: @pageSize @pageOrientation;
 }
 
 .calendarGenerator {
@@ -66,40 +41,53 @@
   color: black;
   line-height: 1;
   text-align: center;
+  font-size: 16pt;
 
-  // 1 mm = 2.834645669 pt
-  // a4 has a width of 210, divided 200 is equal to a factor of 1.05
-  font-size: unit(@pageWidth / 200) * 16pt;
+
+  .page {
+    // box-sizing: border-box;
+    // page-break-before: always;
+    width: @pageWidth;
+    // height: @pageHeight;
+    margin: auto;
+
+    .pageBorder & {
+      border: 1px dashed red;
+    }
+  }
+  .page:first-child {
+    // page-break-before: avoid;
+  }
+  .imgContainer {
+    width: @pageWidth;
+    height: @pageHeight/2;
+    // .separatePicture & {
+    //   height: @pageHeight;
+    // }
+  }
+
+  .noPictures & .imgContainer {
+    display: none !important;
+  }
 
   img {
     width: auto;
     max-width: @pageWidth;
-    height: @pageHeight/2;
-   .separatePicture & {
-    vertical-align: middle;
-      max-height: @pageHeight;
-      height: auto;
-    }
+    height: auto;
   }
 
 
 .Calendar {
-  .separatePicture & {
-    page-break-before: always;
-  }
-  page-break-after: always;
-  margin: auto;
+  margin: @pageHeight/18 auto 0;
   width: @pageWidth;
-  // height: @pageHeight/2;
-  // border: 1px solid red;
-  overflow: hidden;
-
+  height: @pageHeight/2;
+  // border: 1px solid green;
 
   h1 {
     text-align: center;
-    font-weight: 100;
-    margin: @pageHeight/20 auto @pageHeight/25;
-    font-size: 150%;
+    font-weight: 200;
+    margin: 0 auto @pageHeight/25;
+    font-size: 170%;
   }
 }
 
@@ -113,7 +101,7 @@ td, th {
   position: relative;
   text-align: center;
   width: @pageWidth/8;
-  height: round(@pageHeight/100)*4;
+  height: @pageHeight/25;
   vertical-align: top;
   line-height: 1;
   // border: 1px solid red;
@@ -122,10 +110,10 @@ td, th {
 
 th {
   line-height: 1;
-  font-size: 60%;
+  font-size: 80%;
   padding-top: @pageHeight/60;
   height: @pageHeight/20;
-  font-weight: 100;
+  font-weight: 200;
   vertical-align: top;
 }
 
@@ -203,12 +191,12 @@ td:nth-child(7) {
   position: absolute;
   top: 25%;
   left: 25%;
-  height: 2pt;
+  height: 1.5pt;
   width: 50%;
   background: currentColor;
   z-index: 99;
-  transform: rotate(8deg);
-  -webkit-transform:rotate(8deg);
+  transform: rotate(9deg);
+  -webkit-transform:rotate(9deg);
 }
 
 .holiday:before {
@@ -220,10 +208,10 @@ td:nth-child(7) {
   left: 50%;
   bottom: 0;
   top: 25%;
-  margin-left: (-1)*(@pageHeight/25)/2;
-  margin-top: (-1)*(@pageHeight/25)/2;
-  opacity: 0.3;
-  width: @pageHeight/25;
-  height: @pageHeight/25;
+  margin-left: (-1)*round(@pageHeight/25)/2;
+  margin-top: (-1)*round(@pageHeight/25)/2;
+  opacity: 0.4;
+  width: round(@pageHeight/25);
+  height: round(@pageHeight/25);
 }
 }
