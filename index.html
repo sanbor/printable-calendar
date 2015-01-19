@@ -6,308 +6,188 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Printable customizable calendar</title>
 
-    <!-- Bootstrap -->
-    <!-- <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"> -->
-
-    <link rel="stylesheet/less" type="text/css" media="print" href="calendar.less"/>
-    <link rel="stylesheet/less" type="text/css" media="screen" href="index.less"/>
+    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" media="screen" rel="stylesheet">
+    <link rel="stylesheet/less" type="text/css" media="all" href="calendar.less"/>
+    <link rel="stylesheet/less" type="text/css" media="screen" href="less/main.less"/>
     <script src="bower_components/less.js/dist/less.min.js" type="text/javascript"></script>
   </head>
 
   <body>
-    <div class="Page">
-      <div class="calendarGenerator">
-      <h1>Printable customizable calendar</h1>
+    <div class="container-fluid">
 
-      <form class="form-inline">
-        <h2>Period</h2>
+        <div class="calendarGenerator">
+          <div role="tabpanel">
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist">
+              <li role="presentation" class="active"><a href="#general" aria-controls="general" role="tab" data-toggle="tab">General</a></li>
+              <li role="presentation"><a href="#page" aria-controls="page" role="tab" data-toggle="tab">Page</a></li>
+              <li role="presentation"><a href="#images" aria-controls="images" role="tab" data-toggle="tab">Images</a></li>
+              <li role="presentation"><a href="#print" aria-controls="print" role="tab" data-toggle="tab">Print</a></li>
+            </ul>
 
-        <label>
-          <span>From</span>
-          <input type="date" class="fromPeriod" />
-        </label>
-        <label>
-          <span>To</span>
-          <input type="date" class="toPeriod" />
-        </label>
-        <h2>Page options</h2>
-        <div>
-          <label>
-            <span>Units</span>
-            <select class="widthUnit">
-              <option>mm</option>
-              <option>in</option>
-              <option>px</option>
-            </select>
-          </label>
-        </div>
-        <div>
-          <label>
-            <span>Size</span>
-            <select class="pageSize">
-              <option value="a4">A4 - 210 mm × 297 mm or 8.27 in × 11.7 in</option>
-              <option value="a3">A3 - 297 mm × 420 mm or 11.7 in × 16.5 in</option>
-              <option value="letter" selected>Letter - 216 mm × 279 mm or 8.5 in × 11 in</option>
-              <option value="custom">Custom</option>
-            </select>
-          </label>
-        </div>
-        <div class="customPageSize" style="display:none">
-          <div class="pictureSeparateWarning" style="display:none">
-          <strong>Warning: When the picture is printed in a separate page,
-          width and height are swapped because the page is in landscape mode</strong>
+            <!-- Tab panes -->
+            <div class="tab-content">
+              <div role="tabpanel" class="tab-pane active" id="general">
+              <form class="form-inline">
+                <div class="form-group">
+                  <label for="input-year" class="control-label">Calendar for the year</label>
+                  <select class="form-control year" id="input-year">
+                  </select>
+                </div>
+              </form>
+              <p>You can add holidays to the calendar by clicking in a day.</p>
+              </div>
+
+              <div role="tabpanel" class="tab-pane" id="page">
+                <form class="form-horizontal">
+                <div class="form-group">
+                  <label for="select-paperSize" class="col-sm-1 control-label">Paper size</label>
+                  <div class="col-sm-4">
+                    <select class="form-control paperSize" id="select-paperSize">
+                      <option value="a4" selected>A4 - 210 mm × 297 mm or 8.27 in × 11.7 in</option>
+                      <option value="a3">A3 - 297 mm × 420 mm or 11.7 in × 16.5 in</option>
+                      <option value="letter">Letter - 216 mm × 279 mm or 8.5 in × 11 in</option>
+                      <option value="custom">Custom</option>
+                    </select>
+                  </div>
+                  <label for="select-widthUnit" class="col-sm-2 control-label">Units</label>
+                  <div class="col-sm-5">
+                    <select class="form-control widthUnit" id="select-widthUnit">
+                      <option value="mm">millimeters</option>
+                      <option value="in">inches</option>
+                    </select>
+                  </div>
+
+                <div class="custompaperSize" style="display:none">
+                  <div class="pictureSeparateWarning" style="display:none">
+                  <strong>Warning: When the picture is printed in a separate paper,
+                  width and height are swapped because the paper is in landscape mode</strong>
+                  </div>
+                  <label>
+                    <span>Width</span>
+                    <input type="text" class="paperWidth" />
+                    <span class="units"></span>
+                  </label>
+                  <label>
+                    <span>Height</span>
+                    <input type="text" class="paperHeight" />
+                    <span class="units"></span>
+                  </label>
+                  <small>
+                    <p>Common paper sizes for reference</p>
+                      <dl>
+                       <dt>A5
+                       </dt><dd>Equivalent to the size of ISO A5 media: 148mm wide and 210mm
+                        high.
+                       </dd><dt>A4
+                       </dt><dd>Equivalent to the size of ISO A4 media: 210mm wide and 297mm
+                        high.
+                       </dd><dt>A3
+                       </dt><dd>Equivalent to the size of ISO A3 media: 297mm wide and 420mm
+                        high.
+                       </dd><dt>B5
+                       </dt><dd>Equivalent to the size of ISO B5 media: 176mm wide by 250mm
+                        high.
+                       </dd><dt>B4
+                       </dt><dd>Equivalent to the size of ISO B4 media: 250mm wide by 353mm
+                        high.
+                       </dd><dt>letter
+                       </dt><dd>Equivalent to the size of North American letter media: 8.5
+                        inches wide and 11 inches high
+                       </dd><dt>legal
+                       </dt><dd>Equivalent to the size of North American legal: 8.5 inches wide
+                        by 14 inches high.
+                       </dd><dt>ledger
+                       </dt><dd>Equivalent to the size of North American ledger: 11 inches wide
+                        by 17 inches high.
+                      </dd>
+                    </dl>
+                  </small>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="input-paperMarginTop" class="col-sm-1 control-label">Margin top</label>
+                  <div class="col-sm-4">
+                    <div class="input-group">
+                      <input type="text" class="form-control paperMarginTop" id="input-paperMarginTop" aria-describedby="paperMarginTopUnit" />
+                      <span class="input-group-addon units" id="paperMarginTopUnit">mm</span>
+                    </div>
+                  </div>
+
+                  <label for="input-paperMarginBottom" class="col-sm-2 control-label">Margin Bottom</label>
+                  <div class="col-sm-5">
+                    <div class="input-group">
+                      <input type="text" class="form-control paperMarginBottom" id="input-paperMarginBottom" aria-describedby="paperMarginBottomUnit" />
+                      <span class="input-group-addon units" id="paperMarginBottomUnit">mm</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="input-paperMarginLeft" class="col-sm-1 control-label">Margin Left</label>
+                  <div class="col-sm-4">
+                    <div class="input-group">
+                      <input type="text" class="form-control paperMarginLeft" id="input-paperMarginLeft" aria-describedby="paperMarginLeftUnit" />
+                      <span class="input-group-addon units" id="paperMarginLeftUnit">mm</span>
+                    </div>
+                  </div>
+
+                  <label for="input-paperMarginRight" class="col-sm-2 control-label">Margin Right</label>
+                  <div class="col-sm-5">
+                    <div class="input-group">
+                      <input type="text" class="form-control paperMarginRight" id="input-paperMarginRight" aria-describedby="paperMarginRightUnit" />
+                      <span class="input-group-addon units" id="paperMarginRightUnit">mm</span>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="images">
+            <p>Just drag and drop all your pictures to the calendar below.</p>
+            <p>You can also rearrange the pictures in the calendar.</p>
+              <!-- <div>
+                <h2>Picture in separate paper?</h2>
+                <p>Ecology warning: This option will use two papers for each month.</p>
+                <p><strong>This option will require set landscape mode in printer dialog.</strong></p>
+                <label>
+                  <input type="checkbox" class="pictureSeparate" />
+                  <span>Put picture in a separate paper</span>
+                </label>
+              </div>
+              <div>
+                <h2>Pictures</h2>
+                <label>
+                  <input type="checkbox" class="noPictures" />
+                  <span>No pictures, print only the calendar</span>
+                </label>
+              </div> -->
+            </div>
+            <div role="tabpanel" class="tab-pane" id="print">
+              <p>
+                <strong><i class="fa fa-check"></i> Don't forget to select the right paper size in the print dialog.</strong>
+              </p>
+              <p>
+                <strong><i class="fa fa-check"></i> Don't forget to check the option "Print backgrounds" in the print dialog.</strong>
+              </p>
+              <p>
+                <button type="submit" class="Button Button--primary printCalendar">
+                  Print calendar
+                </button>
+              </p>
           </div>
-          <label>
-            <span>Width</span>
-            <input type="text" class="pageWidth" />
-            <span class="units"></span>
-          </label>
-          <label>
-            <span>Height</span>
-            <input type="text" class="pageHeight" />
-            <span class="units"></span>
-          </label>
-          <small>
-            <p>Common page sizes for reference</p>
-              <dl>
-               <dt>A5
-               </dt><dd>Equivalent to the size of ISO A5 media: 148mm wide and 210mm
-                high.
-               </dd><dt>A4
-               </dt><dd>Equivalent to the size of ISO A4 media: 210mm wide and 297mm
-                high.
-               </dd><dt>A3
-               </dt><dd>Equivalent to the size of ISO A3 media: 297mm wide and 420mm
-                high.
-               </dd><dt>B5
-               </dt><dd>Equivalent to the size of ISO B5 media: 176mm wide by 250mm
-                high.
-               </dd><dt>B4
-               </dt><dd>Equivalent to the size of ISO B4 media: 250mm wide by 353mm
-                high.
-               </dd><dt>letter
-               </dt><dd>Equivalent to the size of North American letter media: 8.5
-                inches wide and 11 inches high
-               </dd><dt>legal
-               </dt><dd>Equivalent to the size of North American legal: 8.5 inches wide
-                by 14 inches high.
-               </dd><dt>ledger
-               </dt><dd>Equivalent to the size of North American ledger: 11 inches wide
-                by 17 inches high.
-              </dd>
-            </dl>
-          </small>
         </div>
-        <div>
-          <h3>Margins</h3>
-          <div>
-            <label>
-              <span>Margin top</span>
-              <input type="text" class="pageMarginTop" />
-              <span class="units"></span>
-            </label>
-            <label>
-              <span>Margin bottom</span>
-              <input type="text" class="pageMarginBottom" />
-              <span class="units"></span>
-            </label>
-          </div>
-          <div>
-          <label>
-            <span>Margin left</span>
-            <input type="text" class="pageMarginLeft" />
-            <span class="units"></span>
-          </label>
-          <label>
-            <span>Margin right</span>
-            <input type="text" class="pageMarginRight" />
-            <span class="units"></span>
-          </label>
-          </div>
-        </div>
-        <div>
-          <h2>Picture in separate page?</h2>
-          <p>Ecology warning: This option will use two pages for each month.</p>
-          <p><strong>This option will require set landscape mode in printer dialog.</strong></p>
-          <label>
-            <input type="checkbox" class="pictureSeparate" />
-            <span>Put picture in a separate page</span>
-          </label>
-        </div>
-        <div>
-          <h2>Pictures</h2>
-          <label>
-            <input type="checkbox" class="noPictures" />
-            <span>No pictures, print only the calendar</span>
-          </label>
-        </div>
-        <div>
-          <h3>Show a border around the page</h3>
-          <p>A border around the page it's useful to see if the margins and page size
-          matches the selected setting. When you happy with both this settings and
-          the printer settings, then you can uncheck this option.</p>
-          <label>
-            <input type="checkbox" class="showPageBorder" checked />
-            <span>Show a border around the page</span>
-          </label>
-        </div>
-        <p>
-          <strong><i class="fa fa-check"></i> Don't forget to select the right paper size in the print dialog.</strong>
-        </p>
-        <p>
-          <strong><i class="fa fa-check"></i> Don't forget to check the option "Print backgrounds" in the print dialog.</strong>
-        </p>
-        <p>
-          <button type="submit" class="Button Button--primary printCalendar">
-            Print calendar
-          </button>
-        </p>
-      </form>
+      </div>
     </div>
 
-    <div class="printableCalendar" />
-    <!--  Example markup
-      <img src="img/4/1.jpg">
-      <h1>enero</h1>
-      <table class="calendar">
-        <thead>
-          <tr>
-            <th>Lunes</th>
-            <th>Martes</th>
-            <th>Miércoles</th>
-            <th>Jueves</th>
-            <th>Viernes</th>
-            <th>Sábado</th>
-            <th>Domingo</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <tr>
-            <td class="prev-month">29</td>
-            <td class="prev-month">30</td>
-            <td class="prev-month">31</td>
-            <td>1</td>
-            <td>2</td>
-            <td>3</td>
-            <td>4</td>
-          </tr>
-
-          <tr>
-            <td>5</td>
-            <td>6</td>
-            <td>7</td>
-            <td>8</td>
-            <td>9</td>
-            <td>10</td>
-            <td>11</td>
-          </tr>
-
-          <tr>
-            <td>12</td>
-            <td>13</td>
-            <td>14</td>
-            <td>15</td>
-            <td>16</td>
-            <td>17</td>
-            <td class="current-day">18</td>
-          </tr>
-
-          <tr>
-            <td>19</td>
-            <td>20</td>
-            <td>21</td>
-            <td>22</td>
-            <td>23</td>
-            <td>24</td>
-            <td>25</td>
-          </tr>
-
-          <tr>
-            <td>26</td>
-            <td>27</td>
-            <td>28</td>
-            <td>29</td>
-            <td>30</td>
-            <td>31</td>
-            <td class="next-month">1</td>
-          </tr>
-        </tbody>
-      </table>
-      <h1>febrero</h1>
-      <table class="calendar">
-        <thead>
-          <tr>
-            <th>Lunes</th>
-            <th>Martes</th>
-            <th>Miércoles</th>
-            <th>Jueves</th>
-            <th>Viernes</th>
-            <th>Sábado</th>
-            <th>Domingo</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <tr>
-            <td class="prev-month">29</td>
-            <td class="prev-month">30</td>
-            <td class="prev-month">31</td>
-            <td>1</td>
-            <td>2</td>
-            <td>3</td>
-            <td>4</td>
-          </tr>
-
-          <tr>
-            <td>5</td>
-            <td>6</td>
-            <td>7</td>
-            <td>8</td>
-            <td>9</td>
-            <td>10</td>
-            <td>11</td>
-          </tr>
-
-          <tr>
-            <td>12</td>
-            <td>13</td>
-            <td>14</td>
-            <td>15</td>
-            <td>16</td>
-            <td>17</td>
-            <td class="current-day">18</td>
-          </tr>
-
-          <tr>
-            <td>19</td>
-            <td>20</td>
-            <td>21</td>
-            <td>22</td>
-            <td>23</td>
-            <td>24</td>
-            <td>25</td>
-          </tr>
-
-          <tr>
-            <td>26</td>
-            <td>27</td>
-            <td>28</td>
-            <td>29</td>
-            <td>30</td>
-            <td>31</td>
-            <td class="next-month">1</td>
-          </tr>
-        </tbody>
-      </table>
-    -->
+    <div class="printableCalendar"></div>
     </div>
-    <!-- Moment -->
-    <script src="bower_components/moment/min/moment-with-locales.js"></script>
     <!-- jQuery -->
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
-    <!-- Bootstrap plugins
-    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>-->
+    <!-- Moment -->
+    <script src="bower_components/moment/min/moment-with-locales.js"></script>
+    <!-- Combodate -->
+    <script src="bower_components/combodate/src/combodate.js"></script>
+    <!-- Bootstrap plugins -->
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <!-- Calendar -->
     <script src="calendar.js"></script>
   </body>
