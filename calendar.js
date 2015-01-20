@@ -352,7 +352,7 @@ function generateCalendar(year) {
 
         // Checks if the current day is from the next month (wrapping to Jan)
         if (date.month() === (month + 1) % 12) {
-          dayElement.addClass('prev-next-month');
+          dayElement.addClass('next-month');
         }
 
         $tr.append(dayElement);
