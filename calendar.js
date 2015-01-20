@@ -285,20 +285,9 @@ function generateCalendar(year) {
   var to = moment((parseInt(year, 10) + 1) + '-01-01');
 
   var months = moment.months();
-  var currentMonth = 0;
-  var week = 1;
-  var $table;
 
   // First week of the year (starts in Dec 28 2014 instead Jan 1 2015)
-  var date = moment(from)
-
-  if (startOnModay) {
-    // start the week on Monday
-    date.day(1);
-  } else {
-    // start the week on Sunday
-    date.day(0);
-  }
+  var date = moment(from);
 
   var createpaperForMonthNumber = function(month) {
     var $container = $('<div class="paper"></div>').appendTo('.printableCalendar');
@@ -337,54 +326,43 @@ function generateCalendar(year) {
     $(weekdaysTemplate).appendTo($table);
   };
 
-  // January
-  createpaperForMonthNumber(0);
+  var insertDaysForMonthNumber = function(year, month) {
+    var date = moment(year + '/' + (month + 1) + '/01');
 
-  while (date.isBefore(to)) {
-    var $tr = $('<tr/>').appendTo($table);
+    while (date.day() !== (startOnModay ? 1 : 0)) {
+      date.add(-1, 'days');
+    }
 
-    for (var i = 0; i < 7; i++) {
-      var day = date.format('DD');
-      var dataDate = 'data-date="' + date.format('MM-DD') + '"';
+    while (date.month() !== (month + 1) % 12) {
+      var $tr = $('<tr/>').appendTo($table);
 
-      var dayElement = $('<td ' + dataDate + '>' + day + '</td>');
+      for (var i = 0; i < 7; i++) {
+        var dataDate = 'data-date="' + date.format('MM-DD') + '"';
+        var day = date.format('DD');
+        var dayElement = $('<td ' + dataDate + '>' + day + '</td>');
 
-      if (holidays.indexOf(date.format('MM-DD')) >= 0) {
-        dayElement.addClass('holiday');
-      }
-      // Checks if the current day is from last month OR last year
-      // BUG: doesn't work in January with calendars longer than a year
-      if (date.month() < currentMonth || date.year() < from.year()) {
-        dayElement.addClass('prev-month');
-      }
-      // Checks if the current day is from the next month and this year
-      // OR the day is from the next year
-      if ((date.month() > currentMonth && date.year() >= from.year()) || date.year() >= to.year()) {
-        dayElement.addClass('prev-next-month');
-      }
+        if (holidays.indexOf(date.format('MM-DD')) >= 0) {
+          dayElement.addClass('holiday');
+        }
 
-      $tr.append(dayElement);
-      date.add(1, 'days');
-    };
+        // Checks if the current day is from previous month (wrapping to Dec)
+        if (date.month() === (month - 1 + 12) % 12) {
+          dayElement.addClass('prev-month');
+        }
 
-    if (date.month() > currentMonth ||
-      date.month() < currentMonth && date.year() < to.year()) {
-      currentMonth++;
+        // Checks if the current day is from the next month (wrapping to Jan)
+        if (date.month() === (month + 1) % 12) {
+          dayElement.addClass('prev-next-month');
+        }
 
-      if (currentMonth > 11) {
-        currentMonth = 0;
-      }
-
-      createpaperForMonthNumber(currentMonth);
-
-      // if Monday is not 1st, we are going to show the last days of the
-      // last month
-      var temp = moment(date);
-      temp.subtract(7, 'days');
-
-      if (date.day() !== 1 || date.format('DD') != "01") {
-        date.subtract(7, 'days');
+        $tr.append(dayElement);
+        date.add(1, 'days');
       }
     }
+  };
+
+  for (var month = 0; month < 12; month++) {
+    createpaperForMonthNumber(month);
+    insertDaysForMonthNumber(year, month);
   }
 }
