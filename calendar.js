@@ -327,10 +327,10 @@ function generateCalendar(year, locale) {
       date.add(-1, 'days');
     }
 
-    while (date.month() !== (month + 1) % 12) {
+    for(var i = 0; i < 6; i++) {
       var $tr = $('<tr/>').appendTo($table);
 
-      for (var i = 0; i < 7; i++) {
+      for (var j = 0; j < 7; j++) {
         var dataDate = 'data-date="' + date.format('MM-DD') + '"';
         var day = date.format('DD');
         var dayElement = $('<td ' + dataDate + '>' + day + '</td>');
