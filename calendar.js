@@ -269,12 +269,12 @@ function updatePaperFormControls() {
     $('.custompaperSize').show();
   } else {
     $('.custompaperSize').hide();
-    var paperSize = PAPER_SIZES[$('.paperSize').val()];
-    var isMm = $('.widthUnit').val() === 'mm';
-    $('.paperMarginTop').val(isMm ? paperSize.marginTop : toInches(paperSize.marginTop));
-    $('.paperMarginBottom').val(isMm ? paperSize.marginBottom : toInches(paperSize.marginBottom));
-    $('.paperMarginLeft').val(isMm ? paperSize.marginLeft : toInches(paperSize.marginLeft));
-    $('.paperMarginRight').val(isMm ? paperSize.marginRight : toInches(paperSize.marginRight));
+    ['Top', 'Bottom', 'Left', 'Right'].forEach(function (side) {
+      var len = PAPER_SIZES[$('.paperSize').val()]["margin" + side];
+      $('.paperMargin' + side).val(($('.widthUnit').val() === 'mm')
+        ? len
+        : toInches(len));
+    });
   }
 };
 
