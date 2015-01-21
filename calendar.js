@@ -283,14 +283,6 @@ function generateCalendar(year, locale) {
   // clean previous calendar
   $('.printableCalendar').empty();
 
-  var from = moment(year + '-01-01');
-  var to = moment((parseInt(year, 10) + 1) + '-01-01');
-
-  var months = moment.months();
-
-  // First week of the year (starts in Dec 28 2014 instead Jan 1 2015)
-  var date = moment(from);
-
   var createpaperForMonthNumber = function(month) {
     var $container = $('<div class="paper"></div>').appendTo('.printableCalendar');
 
@@ -303,6 +295,7 @@ function generateCalendar(year, locale) {
   };
 
   var insertCalendar = function(month, $container) {
+    var months = moment.months();
     var $Calendar = $('<div class="Calendar"></div>').appendTo($container);
 
     $('<h1>' + months[month] + '</h1>').appendTo($Calendar);
