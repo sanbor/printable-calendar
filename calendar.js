@@ -41,7 +41,7 @@ var PAPER_SIZES = {
 };
 
 $(function() {
-  populateYearsDropdown();
+  populateDropdowns();
   addFormEvents();
   addCalendarEvents();
 
@@ -51,15 +51,19 @@ $(function() {
   updateCalendar();
 });
 
-function populateYearsDropdown() {
+function populateDropdowns() {
+  for (var i = 0; i < locales.length; i++) {
+    $('.language').append('<option value="' + locales[i][0] + '">' + locales[i][1] + '</option>');
+  };
+
   var year = moment().year();
 
   for (var i = year; i < (year + 10); i++) {
-    $('.year').append('<option>' + i + '</option');
+    $('.year').append('<option>' + i + '</option>');
   };
 
   // checks if it's time to print next year calendar
-  if (moment().month() > 10) {
+  if (moment().month() > 06) {
     $('.year option:nth-child(2)').prop('selected', true);
   }
 }
