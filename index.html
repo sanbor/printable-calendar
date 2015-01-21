@@ -28,11 +28,21 @@
             <!-- Tab panes -->
             <div class="tab-content">
               <div role="tabpanel" class="tab-pane active" id="general">
-              <form class="form-inline">
+              <form class="form-horizontal">
                 <div class="form-group">
-                  <label for="input-year" class="control-label">Calendar for the year</label>
-                  <select class="form-control year" id="input-year">
-                  </select>
+                  <label for="input-year" class="col-sm-2 control-label">Calendar for the year</label>
+                  <div class="col-sm-3">
+                    <select class="form-control year" id="input-year"></select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="input-language" class="col-sm-2 control-label">Language</label>
+                  <div class="col-sm-3">
+                    <select class="form-control language" id="input-language">
+                      <option value="en">English</option>
+                      <option value="es">Español</option>
+                    </select>
+                  </div>
                 </div>
               </form>
               <p>You can add holidays to the calendar by clicking in a day.</p>

@@ -87,7 +87,7 @@ function updateCalendar() {
   }
 
   updatePaperSettings();
-  generateCalendar($('.year').val());
+  generateCalendar($('.year').val(), $('.language').val());
 }
 
 function addFormEvents() {
@@ -274,13 +274,11 @@ function updatePaperFormControls() {
   }
 };
 
-function generateCalendar(year) {
+function generateCalendar(year, locale) {
+  moment.locale(locale);
   // clean previous calendar
   $('.printableCalendar').empty();
 
-  // Spanish days
-  moment.locale('es');
-  var startOnModay = true;
   var from = moment(year + '-01-01');
   var to = moment((parseInt(year, 10) + 1) + '-01-01');
 
@@ -312,10 +310,9 @@ function generateCalendar(year) {
     var weekdaysTemplate = '<thead><tr>';
     var weekdays = moment.weekdays();
 
-    // make Monday the first day of the week
-    if (startOnModay) {
-      var sunday = weekdays.shift();
-      weekdays.push(sunday);
+    // set the first day of the week
+    for (var i = 0; i < moment().localeData().firstDayOfWeek(); i++) {
+      weekdays.push(weekdays.shift());
     }
     $.each(weekdays, function(index, dayName) {
       weekdaysTemplate += '<th>' + dayName + '</th>';
@@ -329,7 +326,7 @@ function generateCalendar(year) {
   var insertDaysForMonthNumber = function(year, month) {
     var date = moment(year + '/' + (month + 1) + '/01');
 
-    while (date.day() !== (startOnModay ? 1 : 0)) {
+    while (date.day() !== moment().localeData().firstDayOfWeek()) {
       date.add(-1, 'days');
     }
 
