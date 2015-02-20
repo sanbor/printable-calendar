@@ -1,0 +1,86 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Printable customizable calendar 0.1\n"
+"PO-Revision-Date: 2015-01-27 22:49-0300\n"
+"Last-Translator: Santiago Borrazás <hi@borrazas.org>\n"
+"Language-Team: English\n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Printable customizable calendar"
+msgstr "Printable customizable calendar"
+
+msgid "General"
+msgstr "General"
+
+msgid "Page"
+msgstr "Page"
+
+msgid "Images"
+msgstr "Images"
+
+msgid "Print"
+msgstr "Print"
+
+msgid "Calendar for the year"
+msgstr "Calendar for the year"
+
+msgid "Language"
+msgstr "Language"
+
+msgid "You can add holidays to the calendar by clicking in a day."
+msgstr "You can add holidays to the calendar by clicking in a day."
+
+msgid "Paper size"
+msgstr "Paper size"
+
+msgid "Units"
+msgstr "Units"
+
+msgid "millimeters"
+msgstr "millimeters"
+
+msgid "inches"
+msgstr "inches"
+
+msgid ""
+"Warning: When the picture is printed in a separate paper, width and height "
+"are swapped because the paper is in landscape mode"
+msgstr ""
+"Warning: When the picture is printed in a separate paper, width and height "
+"are swapped because the paper is in landscape mode"
+
+msgid "Width"
+msgstr "Width"
+
+msgid "Height"
+msgstr "Height"
+
+msgid "Margin Bottom"
+msgstr "Margin Bottom"
+
+msgid "Margin Left"
+msgstr "Margin Left"
+
+msgid "Margin Right"
+msgstr "Margin Right"
+
+msgid "Just drag and drop all your pictures to the calendar below."
+msgstr "Just drag and drop all your pictures to the calendar below."
+
+msgid "You can also rearrange the pictures in the calendar."
+msgstr "You can also rearrange the pictures in the calendar."
+
+msgid "Don't forget to select the right paper size in the print dialog."
+msgstr "Don't forget to select the right paper size in the print dialog."
+
+msgid ""
+"Don't forget to check the option \"Print backgrounds\" in the print dialog."
+msgstr ""
+"Don't forget to check the option \"Print backgrounds\" in the print dialog."
+
+msgid "Print calendar"
+msgstr "Print calendar"

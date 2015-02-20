@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Printable customizable calendar</title>
+    <title translate="yes">Printable customizable calendar</title>
 
     <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" media="screen" rel="stylesheet">
     <link rel="stylesheet/less" type="text/css" media="screen" href="less/screen.less"/>
@@ -19,10 +19,10 @@
           <div role="tabpanel">
             <!-- Nav tabs -->
             <ul class="nav nav-tabs" role="tablist">
-              <li role="presentation" class="active"><a href="#general" aria-controls="general" role="tab" data-toggle="tab">General</a></li>
-              <li role="presentation"><a href="#page" aria-controls="page" role="tab" data-toggle="tab">Page</a></li>
-              <li role="presentation"><a href="#images" aria-controls="images" role="tab" data-toggle="tab">Images</a></li>
-              <li role="presentation"><a href="#print" aria-controls="print" role="tab" data-toggle="tab">Print</a></li>
+              <li role="presentation" class="active"><a href="#general" aria-controls="general" role="tab" data-toggle="tab" translate="yes">General</a></li>
+              <li role="presentation"><a href="#page" aria-controls="page" role="tab" data-toggle="tab" translate="yes">Page</a></li>
+              <li role="presentation"><a href="#images" aria-controls="images" role="tab" data-toggle="tab" translate="yes">Images</a></li>
+              <li role="presentation"><a href="#print" aria-controls="print" role="tab" data-toggle="tab" translate="yes">Print</a></li>
             </ul>
 
             <!-- Tab panes -->
@@ -30,25 +30,25 @@
               <div role="tabpanel" class="tab-pane active" id="general">
               <form class="form-horizontal">
                 <div class="form-group">
-                  <label for="input-year" class="col-sm-2 control-label">Calendar for the year</label>
+                  <label for="input-year" class="col-sm-2 control-label" translate="yes">Calendar for the year</label>
                   <div class="col-sm-3">
                     <select class="form-control year" id="input-year"></select>
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="input-language" class="col-sm-2 control-label">Language</label>
+                  <label for="input-language" class="col-sm-2 control-label" translate="yes">Language</label>
                   <div class="col-sm-3">
                     <select class="form-control language" id="input-language"></select>
                   </div>
                 </div>
               </form>
-              <p>You can add holidays to the calendar by clicking in a day.</p>
+              <p translate="yes">You can add holidays to the calendar by clicking in a day.</p>
               </div>
 
               <div role="tabpanel" class="tab-pane" id="page">
                 <form class="form-horizontal">
                 <div class="form-group">
-                  <label for="select-paperSize" class="col-sm-1 control-label">Paper size</label>
+                  <label for="select-paperSize" class="col-sm-1 control-label" translate="yes">Paper size</label>
                   <div class="col-sm-4">
                     <select class="form-control paperSize" id="select-paperSize">
                       <option value="a4" selected>A4 - 210 mm × 297 mm or 8.27 in × 11.7 in</option>
@@ -57,26 +57,26 @@
                       <option value="custom">Custom</option>
                     </select>
                   </div>
-                  <label for="select-widthUnit" class="col-sm-2 control-label">Units</label>
+                  <label for="select-widthUnit" class="col-sm-2 control-label" translate="yes">Units</label>
                   <div class="col-sm-5">
                     <select class="form-control widthUnit" id="select-widthUnit">
-                      <option value="mm">millimeters</option>
-                      <option value="in">inches</option>
+                      <option value="mm" translate="yes">millimeters</option>
+                      <option value="in" translate="yes">inches</option>
                     </select>
                   </div>
 
                 <div class="custompaperSize" style="display:none">
                   <div class="pictureSeparateWarning" style="display:none">
-                  <strong>Warning: When the picture is printed in a separate paper,
+                  <strong translate="yes">Warning: When the picture is printed in a separate paper,
                   width and height are swapped because the paper is in landscape mode</strong>
                   </div>
                   <label>
-                    <span>Width</span>
+                    <span translate="yes">Width</span>
                     <input type="text" class="paperWidth" />
                     <span class="units"></span>
                   </label>
                   <label>
-                    <span>Height</span>
+                    <span translate="yes">Height</span>
                     <input type="text" class="paperHeight" />
                     <span class="units"></span>
                   </label>
@@ -116,12 +116,13 @@
                   <label for="input-paperMarginTop" class="col-sm-1 control-label">Margin top</label>
                   <div class="col-sm-4">
                     <div class="input-group">
-                      <input type="text" class="form-control paperMarginTop" id="input-paperMarginTop" aria-describedby="paperMarginTopUnit" />
+                      <input type="text" class="form-control paperMarginTop"
+                       id="input-paperMarginTop" aria-describedby="paperMarginTopUnit" />
                       <span class="input-group-addon units" id="paperMarginTopUnit">mm</span>
                     </div>
                   </div>
 
-                  <label for="input-paperMarginBottom" class="col-sm-2 control-label">Margin Bottom</label>
+                  <label for="input-paperMarginBottom" class="col-sm-2 control-label" translate="yes">Margin Bottom</label>
                   <div class="col-sm-5">
                     <div class="input-group">
                       <input type="text" class="form-control paperMarginBottom" id="input-paperMarginBottom" aria-describedby="paperMarginBottomUnit" />
@@ -130,7 +131,7 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="input-paperMarginLeft" class="col-sm-1 control-label">Margin Left</label>
+                  <label for="input-paperMarginLeft" class="col-sm-1 control-label" translate="yes">Margin Left</label>
                   <div class="col-sm-4">
                     <div class="input-group">
                       <input type="text" class="form-control paperMarginLeft" id="input-paperMarginLeft" aria-describedby="paperMarginLeftUnit" />
@@ -138,7 +139,7 @@
                     </div>
                   </div>
 
-                  <label for="input-paperMarginRight" class="col-sm-2 control-label">Margin Right</label>
+                  <label for="input-paperMarginRight" class="col-sm-2 control-label" translate="yes">Margin Right</label>
                   <div class="col-sm-5">
                     <div class="input-group">
                       <input type="text" class="form-control paperMarginRight" id="input-paperMarginRight" aria-describedby="paperMarginRightUnit" />
@@ -149,8 +150,8 @@
               </form>
             </div>
             <div role="tabpanel" class="tab-pane" id="images">
-            <p>Just drag and drop all your pictures to the calendar below.</p>
-            <p>You can also rearrange the pictures in the calendar.</p>
+            <p translate="yes">Just drag and drop all your pictures to the calendar below.</p>
+            <p translate="yes">You can also rearrange the pictures in the calendar.</p>
               <!-- <div>
                 <h2>Picture in separate paper?</h2>
                 <p>Ecology warning: This option will use two papers for each month.</p>
@@ -170,13 +171,18 @@
             </div>
             <div role="tabpanel" class="tab-pane" id="print">
               <p>
-                <strong><i class="fa fa-check"></i> Don't forget to select the right paper size in the print dialog.</strong>
+                <strong><i class="fa fa-check"></i>
+                 <span translate="yes">Don't forget to select the right paper
+                  size in the print dialog.</span></strong>
               </p>
               <p>
-                <strong><i class="fa fa-check"></i> Don't forget to check the option "Print backgrounds" in the print dialog.</strong>
+                <strong><i class="fa fa-check"></i>
+                 <span translate="yes">Don't forget to check the option
+                  "Print backgrounds" in the print dialog.</span></strong>
               </p>
               <p>
-                <button type="submit" class="Button Button--primary printCalendar">
+                <button type="submit"
+                 class="Button Button--primary printCalendar" translate="yes">
                   Print calendar
                 </button>
               </p>
@@ -197,6 +203,37 @@
     <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <!-- Calendar locales -->
     <script src="locales.js"></script>
+    <!--
+    <script>
+    allTheModules = {};
+    function require(module) {
+      return allTheModules['$'+module].exports;
+    }
+
+    function newModule(name) {
+x      allTheModules['$'+name] = window.module = {};
+    }
+
+
+    newModule("encoding");
+    module.exports = { foo: function(buf, randomshit) {
+      return {
+        toWhatever: function() {
+          return buf;
+        }
+      };
+    }};
+    newModule('parse');
+    </script>
+    <script src="foo/parse.js">
+    </script>
+    <script>
+    newModule("lojack");
+    </script>
+    <script src="lojack/lojack.js"></script>
+    -->
+    <!-- Jed -->
+    <script src="bower_components/jed/jed.js"></script>
     <!-- Calendar -->
     <script src="calendar.js"></script>
   </body>

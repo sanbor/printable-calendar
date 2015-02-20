@@ -1,3 +1,18 @@
+
+
+$.get('po/es.json', function(jsonData) {
+  // TODO:
+  // bring po2json to the browser side in order to avoid having to keep the
+  // json version of po files
+  // var jsonData = po2json.parse(data, { format: 'jed' });
+
+  var i18n = new Jed(jsonData);
+  getTranslateableElements().each(function() {
+    $(this).text(i18n.gettext(getElementMsgId(this)));
+  });
+});
+
+
 // add delay to the keyup event, borrowed from http://stackoverflow.com/questions/1909441/jquery-keyup-delay
 var delay = (function() {
   var timer = 0;
@@ -7,6 +22,24 @@ var delay = (function() {
   };
 })();
 
+var generatePotFile = function() {
+  return $.makeArray(
+    getTranslateableElements().map(function(index, element) {
+      var msgid = getElementMsgId(element);
+      return "msgid " + JSON.stringify(msgid) + "\nmsgstr \"\"\n\n";
+    })
+  ).join('');
+}
+
+var getTranslateableElements = function() {
+  return $('[translate=yes]');
+}
+
+var getElementMsgId = function(element) {
+  return $(element).text().replace(/\s+/g, ' ').trim();
+}
+
+var holidays = [];
 var holidays = ['01-01', '02-16', '02-17', '03-23', '03-24', '04-02', '04-03', '05-01', '05-25', '06-20', '07-09', '08-17', '10-12', '11-23', '12-07', '12-08', '12-25'];
 
 // optimization: maybe it would be a better idea to create image nodes and store a reference to the node
@@ -300,12 +333,12 @@ function generateCalendar(year, locale) {
 
     $('<h1>' + months[month] + '</h1>').appendTo($Calendar);
     $table = $('<table class="Calendar-table"></table>').appendTo($Calendar);
-    insertWeekdays();
+    insertWeekdays($table);
   };
 
-  var insertWeekdays = function() {
+  var insertWeekdays = function($el) {
     var weekdaysTemplate = '<thead><tr>';
-    var weekdays = moment.weekdays();
+    var weekdays = moment.weekdaysShort();
 
     // set the first day of the week
     for (var i = 0; i < moment().localeData().firstDayOfWeek(); i++) {
@@ -317,7 +350,7 @@ function generateCalendar(year, locale) {
 
     weekdaysTemplate += '</tr></thead>';
 
-    $(weekdaysTemplate).appendTo($table);
+    $(weekdaysTemplate).appendTo($el);
   };
 
   var insertDaysForMonthNumber = function(year, month) {

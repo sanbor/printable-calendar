@@ -1,3 +1,5 @@
+@import 'calendar-weekdays';
+
 @mon-color: #00A0B0;
 @tue-color: #6A4A3C;
 @wed-color: #490A3D;
@@ -5,8 +7,6 @@
 @fri-color: darken(#E97F02, 5%);
 @sat-color: darken(#F8CA00, 10%);
 @sun-color: darken(#8A9B0F, 10%);
-
-@th-border-top: 5pt;
 
 @a4-width:210mm;
 @a4-height:297mm;
@@ -34,6 +34,9 @@
 body {
   margin: 0;
   padding: 0;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "kern" 1;
+  font-kerning: normal;
 }
 
 .printableCalendar {
@@ -47,15 +50,15 @@ body {
 .printableCalendar .paper {
   margin: auto;
 
-  .paperBorder & {
-    box-sizing: border-box;
-    border: 1px dashed red;
-  }
+  // .paperBorder & {
+  //   box-sizing: border-box;
+  //   border: 1px dashed red;
+  // }
 }
 
-.noPictures .imgContainer {
-  display: none !important;
-}
+// .noPictures .imgContainer {
+//   display: none !important;
+// }
 
 .printableCalendar .Calendar {
   overflow: hidden;
@@ -67,172 +70,95 @@ body {
     font-size: 170%;
   }
 }
-.printableCalendar .Calendar-table {
-  margin: 0 auto;
-  border-collapse: collapse;
-  width: 100%;
+
+.prev-month, .next-month {
+  opacity: .4;
 }
 
-td, th {
-  text-transform: capitalize;
-  position: relative;
-  text-align: center;
-  vertical-align: top;
-  width: 14.4%;
-  line-height: 1; //sets the same line height than font-size
+.prev-month:before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 25%;
+  left: 25%;
+  height: 1.5pt;
+  width: 50%;
+  background: currentColor;
+  z-index: 99;
+  transform: rotate(9deg);
+  -webkit-transform:rotate(9deg);
+}
+
+.holiday:before {
+  content: '';
+  display: block;
+  position: absolute;
+  border-radius: 50%;
+  background: #d59797;
+  top: -25%;
+  left: 25%;
+  width: 2.3em;
+  height: 2.3em;
+  
+  opacity: 0.4;
+}
+
+.printableCalendar .imgContainer {
+  max-width: 100%;
+  width: 100%;
+  height: 48%;
+
+  img {
+    width: auto;
+    max-width: 100%;
+    max-height: 100%;
+  }
+}
+
+.printableCalendar .Calendar {
+  margin: 4% auto 0;
+  width: 100%;
+  height: 48%;
+
+  h1 {
+    margin: 0 auto 0;
+    height: 20%;
   }
 
-  th {
-    font-size: 80%;
-    font-weight: 200;
-    vertical-align: top;
-  }
+  .Calendar-table {
+    margin: 0 auto;
+    border-collapse: collapse;
+    height: 60%;
+    width: 90%;
 
-  th:nth-child(1) {
-    color: @mon-color;
-    border-top: @th-border-top solid @mon-color;
-  }
-
-  td:nth-child(1) {
-    color: @mon-color;
-  }
-
-  th:nth-child(2) {
-    color: @tue-color;
-    border-top: @th-border-top solid @tue-color;
-  }
-
-  td:nth-child(2) {
-    color: @tue-color;
-  }
-
-  th:nth-child(3) {
-    color: #490A3D;
-    border-top: @th-border-top solid #490A3D;
-  }
-
-  td:nth-child(3) {
-    color: #490A3D;
-  }
-
-  th:nth-child(4) {
-    color: #BD1550;
-    border-top: @th-border-top solid #BD1550;
-  }
-
-  td:nth-child(4) {
-    color: #BD1550;
-  }
-
-  th:nth-child(5) {
-    color: @fri-color;
-    border-top: @th-border-top solid @fri-color;
-  }
-
-  td:nth-child(5) {
-    color: @fri-color;
-  }
-
-  th:nth-child(6) {
-    color: #F8CA00;
-    border-top: @th-border-top solid #F8CA00;
-  }
-
-  td:nth-child(6) {
-    color: #F8CA00;
-  }
-
-  th:nth-child(7) {
-    color: @sun-color;
-    border-top: @th-border-top solid @sun-color;
-  }
-
-  td:nth-child(7) {
-    color: @sun-color;
-  }
-
-  .prev-month, .next-month {
-    opacity: .4;
-  }
-
-  .prev-month:before {
-    content: '';
-    display: block;
-    position: absolute;
-    top: 25%;
-    left: 25%;
-    height: 1.5pt;
-    width: 50%;
-    background: currentColor;
-    z-index: 99;
-    transform: rotate(9deg);
-    -webkit-transform:rotate(9deg);
-  }
-
-  .holiday:before {
-    content: '';
-    display: block;
-    position: absolute;
-    border-radius: 50%;
-    background: #d59797;
-    top: 25%;
-    left: 50%;
-    opacity: 0.4;
-  }
-
-
-  @media screen {
-    .printableCalendar {
-      font-size: convert(@paperInnerWidth*0.030, 'px')/@previewFactor;
+    td {
+      text-transform: capitalize;
+      position: relative;
+      text-align: center;
+      vertical-align: top;
+      // height: 16.66%;
+      // width: 14.285%;
+      line-height: 1; //sets the same line height than font-size
     }
+  }
+}
 
-    .printableCalendar .paper {
-      float: left;
-      max-width: 100%;
-      width: convert(@paperWidth, 'px')/@previewFactor;
-      height: convert(@paperHeight, 'px')/@previewFactor;
-      border: 1px solid black;
-      border-color: rgba(0,0,0,.3) rgba(0,0,0,.5) rgba(0,0,0,.5) rgba(0,0,0,.3);
+@media screen {
+  .printableCalendar {
+    font-size: convert(@paperInnerWidth*0.030, 'px')/@previewFactor;
+  }
+
+  .printableCalendar .paper {
+    float: left;
+    max-width: 100%;
+    width: convert(@paperWidth, 'px')/@previewFactor;
+    height: convert(@paperHeight, 'px')/@previewFactor;
+    border: 1px solid black;
+    border-color: rgba(0,0,0,.3) rgba(0,0,0,.5) rgba(0,0,0,.5) rgba(0,0,0,.3);
     // border-width: 2px 3px 3px 2px;
     margin: 10px;
     box-shadow: 1px 3px 3px rgba(0,0,0,.2);
     padding: convert(@paperMarginTop, 'px')/@previewFactor convert(@paperMarginRight, 'px')/@previewFactor convert(@paperMarginBottom, 'px')/@previewFactor convert(@paperMarginLeft, 'px')/@previewFactor;
-  }
-
-  .printableCalendar .imgContainer {
-    max-width: 100%;
-    width: convert(@paperInnerWidth, 'px')/@previewFactor;
-    height: convert(@paperInnerHeight/2, 'px')/@previewFactor;
-    img {
-      width: auto;
-      max-width: 100%;
-      max-height: 100%;
-    }
-  }
-  .printableCalendar .Calendar {
-    margin: convert(@paperInnerHeight/25, 'px')/@previewFactor auto 0;
-    width: 100%;
-    height: convert(@paperInnerHeight/2, 'px')/@previewFactor;
-
-    h1 {
-      margin: 0 auto convert(@paperInnerHeight/35, 'px')/@previewFactor;
-    }
-
-    td, th {
-      height: convert(@paperInnerHeight/25, 'px')/@previewFactor;
-    }
-
-    th {
-      padding-top: convert(@paperInnerHeight/60, 'px')/@previewFactor;
-      height: convert(@paperInnerHeight/20, 'px')/@previewFactor;
-    }
-
-    .holiday:before {
-      margin-left: (-1)*convert(@paperInnerHeight/25, 'px')/@previewFactor/2;
-      margin-top: (-1)*convert(@paperInnerHeight/25, 'px')/@previewFactor/2;
-      width: convert(@paperInnerHeight/25, 'px')/@previewFactor;
-      height: convert(@paperInnerHeight/25, 'px')/@previewFactor;
-    }
   }
 }
 
@@ -253,45 +179,5 @@ td, th {
   .printableCalendar .paper {
     width: @paperInnerWidth;
     height: @paperInnerHeight;
-  }
-
-  .printableCalendar .imgContainer {
-    max-width: 100%;
-    width: @paperInnerWidth;
-    height: (@paperInnerHeight)/2;
-
-    img {
-      width: auto;
-      max-width: 100%;
-      max-height: 100%;
-    }
-  }
-
-  .printableCalendar .Calendar {
-    box-sizing: border-box;
-    margin: 0 auto;
-    padding-top: (@paperInnerHeight)/18;
-    width: 100%;
-    height: (@paperInnerHeight)/2;
-
-    h1 {
-      margin: 0 auto @paperHeight/25;
-    }
-
-    td, th {
-      height: @paperInnerHeight/25;
-    }
-
-    th {
-      padding-top: @paperInnerHeight/60;
-      height: @paperInnerHeight/20;
-    }
-
-    .holiday:before {
-      margin-left: (-1)*@paperInnerHeight/25/2;
-      margin-top: (-1)*@paperInnerHeight/25/2;
-      width: @paperInnerHeight/25;
-      height: @paperInnerHeight/25;
-    }
   }
 }
